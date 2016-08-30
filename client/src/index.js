@@ -6,6 +6,7 @@ import './index.css';
 const socket = io();
 
 ReactDOM.render(
-  <App />,
+  <App
+    socket= {socket}/>,
   document.getElementById('root')
 );
