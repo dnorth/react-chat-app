@@ -3,11 +3,12 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/public/index.html');
-});
+app.set('port', (process.env.API_PORT || 3001));
 
-app.use("/", express.static(__dirname + "/public"));
+app.get('/api/something', function(req, res){
+	console.log("Something happened")
+	res.json([]);
+});
 
 io.on('connection', function(socket){
 	console.log('a user connected');
@@ -19,6 +20,6 @@ io.on('connection', function(socket){
 	});
 });
 
-http.listen(3000, function(){
-	console.log('listening on *:3000');
+http.listen(app.get('port'), () => {
+	console.log(`Find the server at: http://localhost:${app.get('port')}/`);
 });

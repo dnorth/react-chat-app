@@ -4,6 +4,11 @@
   "description": "socket.io! First one, woot!",
   "dependencies": {
     "express": "^4.10.2",
+    "foreman": "^2.0.0",
     "socket.io": "^1.4.8"
+  },
+  "scripts": {
+    "start": "nf start -p 3000",
+    "server": "API_PORT=3001 node server.js"
   }
 }
