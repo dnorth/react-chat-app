@@ -12,13 +12,30 @@ class App extends Component {
     autobind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.messages = nextProps.messages
+    console.log("UPDATED")
+  }
+
   static propTypes = {
-    socket: React.PropTypes.object.isRequired
+    socket: React.PropTypes.object.isRequired,
+    messages: React.PropTypes.array
   };
 
   handleMessageSubmit(message) {
     this.props.socket.emit('chat message', message)
-    console.log(this.props.socket)
+  }
+
+  renderMessages(messages) {
+    return messages.map((message, i) => this.renderMessage(message, i))
+  }
+
+  renderMessage(message, index) {
+    return (
+    <li key={index}>
+      <span>{message}</span>
+    </li>
+    )
   }
 
   render() {
@@ -28,7 +45,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <ul className="messages"></ul>
+        <ul className="messages"> {this.renderMessages(this.props.messages)}</ul>
         <SubmitMessage
           onSubmit={this.handleMessageSubmit}/>
       </div>
