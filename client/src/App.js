@@ -55,7 +55,7 @@ class AppContainer extends Component {
     super()
     autobind(this)
     this.state = {
-      messages: ['wow', 'very message']
+      messages: []
     }
   }
 
@@ -65,7 +65,7 @@ class AppContainer extends Component {
 
   socket.on('chat message', msg => {
     this.setState({
-      messages: ["YES IT WORKED"]
+      messages: [...this.state.messages, msg]
     })
     console.log(this.state.messages)
   })
