@@ -13,7 +13,9 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.messages = nextProps.messages
+    this.setState({
+      messages: nextProps.messages
+    })
     console.log("UPDATED")
   }
 
