@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import autobind from 'react-autobind'
-import io from 'socket.io-client';
 
 import logo from './logo.svg';
 import './App.css';
@@ -51,29 +50,29 @@ class App extends Component {
 
 class AppContainer extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     autobind(this)
     this.state = {
       messages: []
     }
+
+    this.props.socket.on('chat message', msg => {
+      this.setState({
+        messages: [...this.state.messages, msg]
+      })
+    })
   }
 
+  static propTypes = {
+    socket: React.PropTypes.object.isRequired
+  };
+
   render() {
-
-  const socket = io();
-
-  socket.on('chat message', msg => {
-    this.setState({
-      messages: [...this.state.messages, msg]
-    })
-    console.log(this.state.messages)
-  })
-
     return (
       <App
         messages={this.state.messages}
-        socket={socket}
+        socket={this.props.socket}
       />
     );
   }
