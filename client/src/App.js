@@ -14,11 +14,16 @@ class App extends Component {
 
   static propTypes = {
     socket: React.PropTypes.object.isRequired,
-    messages: React.PropTypes.array
+    messages: React.PropTypes.array,
+    currentUser: React.PropTypes.string.isRequired
   };
 
   handleMessageSubmit(message) {
-    this.props.socket.emit('chat message', message)
+    this.props.socket.emit('chat message', 
+    {
+      user: this.props.currentUser,
+      text: message
+    })
   }
 
   renderMessages(messages) {
@@ -28,7 +33,7 @@ class App extends Component {
   renderMessage(message, index) {
     return (
     <li key={index}>
-      <span>{message}</span>
+      <span>{message.user}: </span><span>{message.text}</span>
     </li>
     )
   }
@@ -54,11 +59,13 @@ class AppContainer extends Component {
     super(props)
     autobind(this)
     this.state = {
+      currentUser: 'Danny',
       messages: []
     }
 
     this.props.socket.on('chat message', msg => {
       this.setState({
+        ...this.state,
         messages: [...this.state.messages, msg]
       })
     })
@@ -71,6 +78,7 @@ class AppContainer extends Component {
   render() {
     return (
       <App
+        currentUser={this.state.currentUser}
         messages={this.state.messages}
         socket={this.props.socket}
       />
