@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactModal from 'react-modal'
 
+import css from './index.css'
+
 const { bool, func } = React.PropTypes
 
 export default class CloseableModal extends React.Component {
@@ -15,7 +17,7 @@ export default class CloseableModal extends React.Component {
             <ReactModal
             isOpen={this.props.isOpen}
             onRequestClose={this.props.onClose}>
-            <div>
+            <div className={css.content}>
                 {this.props.children}
             </div>
         </ReactModal>

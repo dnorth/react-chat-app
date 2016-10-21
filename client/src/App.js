@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import autobind from 'react-autobind'
 
 import logo from './logo.svg';
-import './App.css';
+import css from './App.css';
 import SubmitMessage from './components/submit-message'
 import UsernameModal from './components/username-modal'
 
@@ -41,12 +41,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className={css.app}>
+        <div className={css.appHeader}>
+          <img src={logo} className={css.appLogo} alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <ul className="messages"> {this.renderMessages(this.props.messages)}</ul>
+        <ul className={css.messages}> {this.renderMessages(this.props.messages)}</ul>
         <SubmitMessage
           onSubmit={this.handleMessageSubmit}/>
 

@@ -19,6 +19,7 @@ export default class SubmitMessage extends React.Component {
   }
 
   render() {
+    console.log("css", css.container)
     return(
       <form onSubmit={this.handleSubmit} className={css.container}>
         <input className={css.inputBox} id="message" ref="message" autoComplete="off" />
