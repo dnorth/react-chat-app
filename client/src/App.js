@@ -4,6 +4,7 @@ import autobind from 'react-autobind'
 import logo from './logo.svg';
 import './App.css';
 import SubmitMessage from './components/submit-message'
+import UsernameModal from './components/username-modal'
 
 class App extends Component {
 
@@ -48,6 +49,8 @@ class App extends Component {
         <ul className="messages"> {this.renderMessages(this.props.messages)}</ul>
         <SubmitMessage
           onSubmit={this.handleMessageSubmit}/>
+
+        <UsernameModal />
       </div>
     );
   }
