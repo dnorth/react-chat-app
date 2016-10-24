@@ -46,7 +46,7 @@ class App extends Component {
           <img src={logo} className={css.appLogo} alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <ul className={css.messages}> {this.renderMessages(this.props.messages)}</ul>
+        <ul> {this.renderMessages(this.props.messages)}</ul>
         <SubmitMessage
           onSubmit={this.handleMessageSubmit}/>
 
