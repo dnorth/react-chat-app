@@ -1,3 +1,19 @@
 .content {
   -webkit-overflow-scrolling: touch; 
 }
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  user-select: none;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 18px;
+}

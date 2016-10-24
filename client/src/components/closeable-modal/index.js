@@ -16,14 +16,19 @@ export default class CloseableModal extends React.Component {
 
     render() {
         return (
-            <ReactModal
+          <ReactModal
             isOpen={this.props.isOpen}
             onRequestClose={this.props.onClose}
             style={customStyle}>
+            <button className={css.close}
+                    onClick={this.props.onClose}
+                    aria-label="Close">
+                &times;
+            </button>
             <div className={css.content}>
                 {this.props.children}
             </div>
-        </ReactModal>
+          </ReactModal>
         )
     }
 }
