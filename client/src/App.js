@@ -6,6 +6,8 @@ import css from './App.css';
 import SubmitMessage from './components/submit-message'
 import UsernameModal from './components/username-modal'
 
+const { object, array, string, func } = React.PropTypes
+
 class App extends Component {
 
   constructor() {
@@ -14,9 +16,10 @@ class App extends Component {
   }
 
   static propTypes = {
-    socket: React.PropTypes.object.isRequired,
-    messages: React.PropTypes.array,
-    currentUser: React.PropTypes.string.isRequired
+    socket: object.isRequired,
+    messages: array,
+    currentUser: string.isRequired,
+    onUsernameSubmit: func.isRequired
   };
 
   handleMessageSubmit(message) {
@@ -50,7 +53,8 @@ class App extends Component {
         <SubmitMessage
           onSubmit={this.handleMessageSubmit}/>
 
-        <UsernameModal />
+        <UsernameModal 
+          onSubmit={this.props.onUsernameSubmit}/>
       </div>
     );
   }
@@ -62,7 +66,7 @@ class AppContainer extends Component {
     super(props)
     autobind(this)
     this.state = {
-      currentUser: 'Danny',
+      currentUser: 'Anonymous',
       messages: []
     }
 
@@ -71,6 +75,13 @@ class AppContainer extends Component {
         ...this.state,
         messages: [...this.state.messages, msg]
       })
+    })
+  }
+
+  handleUsernameSubmit(user) {    
+    this.setState({
+      ...this.state,
+      currentUser: user
     })
   }
 
@@ -84,6 +95,7 @@ class AppContainer extends Component {
         currentUser={this.state.currentUser}
         messages={this.state.messages}
         socket={this.props.socket}
+        onUsernameSubmit={this.handleUsernameSubmit}
       />
     );
   }
