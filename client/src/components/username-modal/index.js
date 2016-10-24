@@ -2,7 +2,7 @@ import React from 'react'
 import autobind from 'react-autobind'
 
 import CloseableModal from '../closeable-modal'
-
+import css from './index.css'
 const { func } = React.PropTypes
 
 export default class UsernameModal extends React.Component {
@@ -49,8 +49,8 @@ export default class UsernameModal extends React.Component {
               onSubmit={this.handleSubmit}>
           <input type="text" 
                  value={this.state.value}
-                 placeholder="Anonymous" />
-          <input type="submit" />
+                 className={css.inputBox}
+                 placeholder="What is your name?" />
         </form>
       </CloseableModal>
     )

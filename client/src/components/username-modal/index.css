@@ -1,0 +1,13 @@
+.inputBox {
+  border-width: 0 0 2px 0;
+  height: 32px;
+  line-height: 32px;
+  font-size: 16px;
+  width: 100%;
+  outline:none;
+}
+
+.inputBox:focus {
+  color: #474747;
+  border-color: #bebebe;
+}

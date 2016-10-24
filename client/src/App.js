@@ -47,7 +47,7 @@ class App extends Component {
       <div className={css.app}>
         <div className={css.appHeader}>
           <img src={logo} className={css.appLogo} alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>React Chat App</h2>
         </div>
         <ul> {this.renderMessages(this.props.messages)}</ul>
         <SubmitMessage
